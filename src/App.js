@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { connect } from 'react-redux';
+import {add, minus, addAsync} from './index.redux'
 
-function App() {
+function App(props) {
+  let counter = props;
+  let {
+    add,
+    minus,
+    addAsync
+  } = props
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      The Counter is {counter}     
+      <button onClick={add}>Add</button> 
+      <button onClick={minus}>Minus</button> 
+      <button onClick={addAsync}>AddAsync</button> 
     </div>
   );
 }
 
+function mapStateToProps (state) {
+  return { 
+    counter: state
+  }
+} 
+
+const actionCreator = {
+  add,
+  minus,
+  addAsync
+}
+
+App = connect(mapStateToProps, actionCreator)(App)
 export default App;
