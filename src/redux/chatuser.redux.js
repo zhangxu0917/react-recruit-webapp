@@ -22,7 +22,7 @@ function userList(payload) {
 export function getUserList(type) {
 	return dispatch => {
 		axios.get('/user/list', {
-			params: {type: 'genius'}
+			params: {type: type}
 		}).then(res => {
 			dispatch(userList(res.data.data))
 		})

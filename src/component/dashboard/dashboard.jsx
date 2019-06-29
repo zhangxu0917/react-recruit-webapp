@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {NavBar, Icon, TabBar} from 'antd-mobile';
 import {connect} from 'react-redux';
-// import {register} from "../../redux/user.redux";
 import Boss from '../../container/boss/boss';
 import Genius from '../../container/genius/genius';
 import Msg from '../../container/msg/msg';
@@ -21,7 +20,7 @@ class Dashboard extends Component {
 			component: Genius ,
 			hide: user.type === 'genius'
 		}, {
-			path: '/genis',
+			path: '/genius',
 			text: 'Boss',
 			icon: 'job',
 			title: 'Boss列表',

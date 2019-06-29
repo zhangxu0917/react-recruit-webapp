@@ -1,43 +1,16 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import {Card, WingBlank, WhiteSpace} from 'antd-mobile';
+import UserCard from '../../component/user-card/user-card'
 import {getUserList} from '../../redux/chatuser.redux';
 import {connect} from 'react-redux';
 
 class Boss extends Component {
 	componentDidMount() {
-		this.props.getUserList()
+		this.props.getUserList('boss')
 	}
 
 	render() {
-		const Header = Card.Header;
-		const Body = Card.Body;
-
 		return (
-			<WingBlank>
-				<WhiteSpace/>
-				{
-					this.props.userList.map((user) => (
-						user.avatar ? (
-							<Card>
-								<Header
-									title={user.user}
-									thumb={require(`../../component/avatar-selector/images/${user.avatar}.png`)}
-									extra={<span>user.title</span>}
-								/>
-								<Body>
-									{
-										user.desc.split('\n').map(item => (
-											<div>{item}</div>
-										))
-									}
-								</Body>
-							</Card>
-						) : null
-					))
-				}
-				<WhiteSpace/>
-			</WingBlank>
+			<UserCard userList={this.props.userList} />
 		);
 	}
 }

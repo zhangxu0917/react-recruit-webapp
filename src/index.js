@@ -19,12 +19,12 @@ import 'antd-mobile/dist/antd-mobile.css';
 const store = createStore(reducers, compose(
   applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : f => f
-))
+));
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <AuthRoute></AuthRoute>
+      <AuthRoute/>
       <Switch>
         <Route path="/login" component={Login}/>
         <Route path="/register" component={Register}/>

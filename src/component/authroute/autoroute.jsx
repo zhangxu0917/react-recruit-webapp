@@ -14,7 +14,6 @@ class autoroute extends Component {
      */
     const publicList = ['/login', '/register'];
     const pathname = this.props.location.pathname;
-
     if (publicList.includes(pathname)) {
       return null;
     }

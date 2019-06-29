@@ -1,7 +1,7 @@
 // FIXME:连接mongodb
 const mongoose = require('mongoose');
 const DB_URL = 'mongodb://127.0.0.1:27017/imooc-chat';
-mongoose.connect(DB_URL, {useNewUrlParser:true})
+mongoose.connect(DB_URL, {useNewUrlParser:true});
 
 const models = {
   user: {
@@ -18,7 +18,7 @@ const models = {
     money: {type: String}
   },
   chat: {}
-}
+};
 
 for (const m in models) {
   if (models.hasOwnProperty(m)) {
@@ -30,4 +30,4 @@ module.exports = {
   getModel (name) {
     return mongoose.model(name);
   }
-}
+};

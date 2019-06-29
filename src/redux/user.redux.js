@@ -1,11 +1,10 @@
 import axios from 'axios'
 import {getRedirectPath} from '../utils'
 
-// const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-// const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const ERROR_MSG  = 'ERROR_MSG';
 const LOAD_DATA = 'LOAD_DATA';
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
+const LOGOUT = 'LOGOUT';
 
 const initState = {
   // isAuth: false,
@@ -14,38 +13,22 @@ const initState = {
   pwd: '',
   type: '',
   redirectTo: ''
-}
+};
 
 export function user(state=initState, action) {
   switch(action.type) {
-    // case REGISTER_SUCCESS:
-    //   return {...state, msg: '', isAuth: true, redirectTo: getRedirectPath(action.payload), ...action.payload}
-    // case LOGIN_SUCCESS:
-    //   return {...state, msg: '', isAuth: true, redirectTo: getRedirectPath(action.payload), ...action.payload}
     case AUTH_SUCCESS:
       return {...state, msg: '', redirectTo: getRedirectPath(action.payload), ...action.payload}
     case ERROR_MSG:
       return {...state, msg: action.msg, isAuth: false};
     case LOAD_DATA:
       return {...state, ...action.payload};
+    case LOGOUT:
+      return {...initState, redirectTo: '/login'};
     default:
-      return state 
+      return state
   }
 }
-
-/*function registerSuccess (payload) {
-  return {
-    type: REGISTER_SUCCESS,
-    payload
-  }
-}
-
-function loginSuccess (payload) {
-  return {
-    type: LOGIN_SUCCESS,
-    payload
-  }
-}*/
 
 function authSuccess (payload) {
   return {
@@ -82,6 +65,13 @@ export function login({user, pwd}) {
         }
       })
   }
+}
+
+export function logoutSubmit() {
+  return {
+    type: LOGOUT
+  }
+
 }
 
 export function register({user, pwd, repeatpwd, type}) {
